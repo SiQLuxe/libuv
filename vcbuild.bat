@@ -70,11 +70,16 @@ goto select-target
 
 @rem Look for Visual Studio 2015
 :vs-set-2015
-if not defined VS140COMNTOOLS goto vc-set-2013
-if not exist "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" goto vc-set-2013
-call "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
-set GYP_MSVS_VERSION=2015
-echo Using Visual Studio 2015
+REM if not defined VS140COMNTOOLS goto vc-set-2013
+if not defined VS160COMNTOOLS goto vc-set-2013
+REM if not exist "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" goto vc-set-2013
+if not exist "%VS160COMNTOOLS%\..\..\VC\Auxiliary\Build\vcvarsall.bat" goto vc-set-2013
+REM call "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
+call "%VS160COMNTOOLS%\..\..\VC\Auxiliary\Build\vcvarsall.bat" %vs_toolset%
+REM set GYP_MSVS_VERSION=2015
+set GYP_MSVS_VERSION=2017
+REM echo Using Visual Studio 2015
+echo Using Visual Studio 2019
 goto select-target
 
 :vc-set-2013
